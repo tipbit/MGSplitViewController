@@ -691,11 +691,16 @@
 	
 	// This action functions on the current primary orientation; it is independent of the other primary orientation.
 	[UIView beginAnimations:@"toggleMaster" context:nil];
+    
+    self.showsMasterInPortrait = !_showsMasterInPortrait;
+    self.showsMasterInLandscape = !_showsMasterInLandscape;
+/*
 	if (self.isLandscape) {
-		self.showsMasterInLandscape = !_showsMasterInLandscape;
+        self.showsMasterInLandscape = !_showsMasterInLandscape;
 	} else {
 		self.showsMasterInPortrait = !_showsMasterInPortrait;
 	}
+*/
 	[UIView commitAnimations];
 }
 
