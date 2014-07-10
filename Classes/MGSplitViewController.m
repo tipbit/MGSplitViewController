@@ -319,9 +319,9 @@
 			if (theView) {
 				theView.frame = masterRect;
 				if (!theView.superview) {
-					[controller viewWillAppear:NO];
+					//[controller viewWillAppear:NO];
 					[self.view addSubview:theView];
-					[controller viewDidAppear:NO];
+					//[controller viewDidAppear:NO];
 				}
 			}
 		}
@@ -392,9 +392,9 @@
 			if (theView) {
 				theView.frame = masterRect;
 				if (!theView.superview) {
-					[controller viewWillAppear:NO];
+					//[controller viewWillAppear:NO];
 					[self.view addSubview:theView];
-					[controller viewDidAppear:NO];
+					//[controller viewDidAppear:NO];
 				}
 			}
 		}
