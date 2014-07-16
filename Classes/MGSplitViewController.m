@@ -232,6 +232,14 @@
             navBarHeight = navController.navigationBar.frame.size.height;
         }
     }
+    
+    float tabBarHeight = 0.0f;
+    UITabBarController *tabBarController = self.tabBarController;
+    if (tabBarController != nil) {
+        if (!tabBarController.tabBar.isHidden) {
+            tabBarHeight = tabBarController.tabBar.frame.size.height;
+        }
+    }
 	
 	// Initially assume portrait orientation.
 	float width = fullScreenRect.size.width;
@@ -246,6 +254,7 @@
 	// Account for status bar, which always subtracts from the height (since it's always at the top of the screen).
 	height -= statusBarHeight;
     height -= navBarHeight;
+    height -= tabBarHeight;
 	
 	return CGSizeMake(width, height);
 }
