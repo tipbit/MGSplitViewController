@@ -47,6 +47,7 @@ typedef enum _MGSplitViewDividerStyle {
 @property (nonatomic, strong) IBOutlet UIViewController *detailViewController; // convenience.
 @property (nonatomic, strong) MGSplitDividerView *dividerView; // the view which draws the divider/split between master and detail.
 @property (nonatomic, assign) MGSplitViewDividerStyle dividerStyle; // style (and behaviour) of the divider between master and detail.
+@property (nonatomic, strong) UIColor *dividerColor;
 
 @property (nonatomic, readonly, getter=isLandscape) BOOL landscape; // returns YES if this view controller is in either of the two Landscape orientations, else NO.
 

@@ -140,7 +140,7 @@
 	}
 	_dividerView = [[MGSplitDividerView alloc] initWithFrame:divRect];
 	_dividerView.splitViewController = self;
-	_dividerView.backgroundColor = MG_DEFAULT_CORNER_COLOR;
+	_dividerView.backgroundColor = self.dividerColor == nil ? MG_DEFAULT_CORNER_COLOR : self.dividerColor;
 	_dividerStyle = MGSplitViewDividerStyleThin;
 }
 
@@ -437,11 +437,11 @@
 		CGRect cornerRect = CGRectMake(0, 0, 10, 10); // arbitrary, will be resized below.
 		leadingCorners = [[MGSplitCornersView alloc] initWithFrame:cornerRect];
 		leadingCorners.splitViewController = self;
-		leadingCorners.cornerBackgroundColor = MG_DEFAULT_CORNER_COLOR;
+		leadingCorners.cornerBackgroundColor = self.dividerColor == nil ? MG_DEFAULT_CORNER_COLOR : self.dividerColor;
 		leadingCorners.cornerRadius = MG_DEFAULT_CORNER_RADIUS;
 		trailingCorners = [[MGSplitCornersView alloc] initWithFrame:cornerRect];
 		trailingCorners.splitViewController = self;
-		trailingCorners.cornerBackgroundColor = MG_DEFAULT_CORNER_COLOR;
+		trailingCorners.cornerBackgroundColor = self.dividerColor == nil ? MG_DEFAULT_CORNER_COLOR : self.dividerColor;
 		trailingCorners.cornerRadius = MG_DEFAULT_CORNER_RADIUS;
 		_cornerViews = [[NSArray alloc] initWithObjects:leadingCorners, trailingCorners, nil];
 		
@@ -1041,7 +1041,7 @@
 		[_dividerView removeFromSuperview];
 		_dividerView = divider;
 		_dividerView.splitViewController = self;
-		_dividerView.backgroundColor = MG_DEFAULT_CORNER_COLOR;
+		_dividerView.backgroundColor = self.dividerColor == nil ? MG_DEFAULT_CORNER_COLOR : self.dividerColor;
 		if ([self isShowingMaster]) {
 			[self layoutSubviews];
 		}
@@ -1121,6 +1121,10 @@
 	}
 }
 
+- (void) setDividerColor:(UIColor *)dividerColor {
+    _dividerView.backgroundColor = dividerColor;
+    _dividerColor = dividerColor;
+}
 
 - (NSArray *)cornerViews
 {
