@@ -189,7 +189,8 @@
 	}
 	
 	// Re-tile views.
-	_reconfigurePopup = YES;
+	//_reconfigurePopup = YES;
+    _reconfigurePopup = NO;
 	[self layoutSubviewsForInterfaceOrientation:toInterfaceOrientation withAnimation:YES];
 }
 
@@ -218,8 +219,15 @@
 - (CGSize)splitViewSizeForOrientation:(UIInterfaceOrientation)theOrientation
 {
 	UIScreen *screen = [UIScreen mainScreen];
-	CGRect fullScreenRect = screen.bounds; // always implicitly in Portrait orientation.
+    
+    // Always convert to portrait size (width < height)
+	CGRect fullScreenRect = CGRectZero;
+    fullScreenRect.size.height = MAX(screen.bounds.size.height, screen.bounds.size.width);
+    fullScreenRect.size.width = MIN(screen.bounds.size.height, screen.bounds.size.width);
+    
 	CGRect appFrame = screen.applicationFrame;
+    appFrame.size.height = MAX(screen.applicationFrame.size.height, screen.applicationFrame.size.width);
+    appFrame.size.width = MIN(screen.applicationFrame.size.height, screen.applicationFrame.size.width);
 	
 	// Find status bar height by checking which dimension of the applicationFrame is narrower than screen bounds.
 	// Little bit ugly looking, but it'll still work even if they change the status bar height in future.
@@ -511,7 +519,9 @@
 	}
 	[self.detailViewController viewWillAppear:animated];
 	
-	_reconfigurePopup = YES;
+	//_reconfigurePopup = YES;
+    _reconfigurePopup = NO;
+
 	[self layoutSubviews];
 }
 
@@ -690,10 +700,11 @@
 	if (_hiddenPopoverController && _hiddenPopoverController.popoverVisible) {
 		[_hiddenPopoverController dismissPopoverAnimated:NO];
 	}
-	
+
 	if (![self isShowingMaster]) {
 		// We're about to show the master view. Ensure it's in place off-screen to be animated in.
-		_reconfigurePopup = YES;
+		//_reconfigurePopup = YES;
+        _reconfigurePopup = NO;
 		[self reconfigureForMasterInPopover:NO];
 		[self layoutSubviews];
 	}
@@ -766,7 +777,8 @@
 			}
 			
 			// Rearrange views.
-			_reconfigurePopup = YES;
+			//_reconfigurePopup = YES;
+            _reconfigurePopup = NO;
 			[self layoutSubviews];
 		}
 	}
@@ -790,7 +802,8 @@
 			}
 			
 			// Rearrange views.
-			_reconfigurePopup = YES;
+			//_reconfigurePopup = YES;
+            _reconfigurePopup = NO;
 			[self layoutSubviews];
 		}
 	}
