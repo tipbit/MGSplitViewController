@@ -194,7 +194,7 @@ float rad2Deg(double radians)
 #pragma mark Accessors and properties
 
 
-- (void)setCornerRadius:(float)newRadius
+- (void)setCornerRadius:(CGFloat)newRadius
 {
 	if (newRadius != cornerRadius) {
 		cornerRadius = newRadius;
