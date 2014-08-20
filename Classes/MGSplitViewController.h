@@ -19,7 +19,7 @@ typedef enum _MGSplitViewDividerStyle {
 @interface MGSplitViewController : UIViewController <UIPopoverControllerDelegate> {
 	BOOL _showsMasterInPortrait;
 	BOOL _showsMasterInLandscape;
-	float _splitWidth;
+	CGFloat _splitWidth;
 	id _delegate;
 	BOOL _vertical;
 	BOOL _masterBeforeDetail;
@@ -28,7 +28,7 @@ typedef enum _MGSplitViewDividerStyle {
     UIPopoverController *_hiddenPopoverController; // Popover used to hold the master view if it's not always visible.
 	MGSplitDividerView *_dividerView; // View that draws the divider between the master and detail views.
 	NSArray *_cornerViews; // Views to draw the inner rounded corners between master and detail views.
-	float _splitPosition;
+	CGFloat _splitPosition;
 	BOOL _reconfigurePopup;
 	MGSplitViewDividerStyle _dividerStyle; // Meta-setting which configures several aspects of appearance and behaviour.
 }
@@ -38,8 +38,8 @@ typedef enum _MGSplitViewDividerStyle {
 @property (nonatomic, assign) BOOL showsMasterInLandscape; // applies to both landscape orientations (default YES)
 @property (nonatomic, assign, getter=isVertical) BOOL vertical; // if NO, split is horizontal, i.e. master above detail (default YES)
 @property (nonatomic, assign, getter=isMasterBeforeDetail) BOOL masterBeforeDetail; // if NO, master view is below/right of detail (default YES)
-@property (nonatomic, assign) float splitPosition; // starting position of split in pixels, relative to top/left (depending on .isVertical setting) if masterBeforeDetail is YES, else relative to bottom/right.
-@property (nonatomic, assign) float splitWidth; // width of split in pixels.
+@property (nonatomic, assign) CGFloat splitPosition; // starting position of split in pixels, relative to top/left (depending on .isVertical setting) if masterBeforeDetail is YES, else relative to bottom/right.
+@property (nonatomic, assign) CGFloat splitWidth; // width of split in pixels.
 @property (nonatomic, assign) BOOL allowsDraggingDivider; // whether to let the user drag the divider to alter the split position (default NO).
 
 @property (nonatomic, copy) NSArray *viewControllers; // array of UIViewControllers; master is at index 0, detail is at index 1.
@@ -60,7 +60,7 @@ typedef enum _MGSplitViewDividerStyle {
 
 // Conveniences for you, because I care.
 - (BOOL)isShowingMaster;
-- (void)setSplitPosition:(float)posn animated:(BOOL)animate; // Allows for animation of splitPosition changes. The property's regular setter is not animated.
+- (void)setSplitPosition:(CGFloat)posn animated:(BOOL)animate; // Allows for animation of splitPosition changes. The property's regular setter is not animated.
 /* Note:	splitPosition is the width (in a left/right split, or height in a top/bottom split) of the master view.
 			It is relative to the appropriate side of the splitView, which can be any of the four sides depending on the values in isMasterBeforeDetail and isVertical:
 				isVertical = YES, isMasterBeforeDetail = YES: splitPosition is relative to the LEFT edge. (Default)
@@ -108,10 +108,10 @@ typedef enum _MGSplitViewDividerStyle {
 - (void)splitViewController:(MGSplitViewController*)svc willChangeSplitOrientationToVertical:(BOOL)isVertical;
 
 // Called when split position will change to the given pixel value (relative to left if split is vertical, or to top if horizontal).
-- (void)splitViewController:(MGSplitViewController*)svc willMoveSplitToPosition:(float)position;
+- (void)splitViewController:(MGSplitViewController*)svc willMoveSplitToPosition:(CGFloat)position;
 
 // Called before split position is changed to the given pixel value (relative to left if split is vertical, or to top if horizontal).
 // Note that viewSize is the current size of the entire split-view; i.e. the area enclosing the master, divider and detail views.
-- (float)splitViewController:(MGSplitViewController *)svc constrainSplitPosition:(float)proposedPosition splitViewSize:(CGSize)viewSize;
+- (CGFloat)splitViewController:(MGSplitViewController *)svc constrainSplitPosition:(CGFloat)proposedPosition splitViewSize:(CGSize)viewSize;
 
 @end

@@ -231,9 +231,9 @@
 	
 	// Find status bar height by checking which dimension of the applicationFrame is narrower than screen bounds.
 	// Little bit ugly looking, but it'll still work even if they change the status bar height in future.
-	float statusBarHeight = MAX((fullScreenRect.size.width - appFrame.size.width), (fullScreenRect.size.height - appFrame.size.height));
+	CGFloat statusBarHeight = MAX((fullScreenRect.size.width - appFrame.size.width), (fullScreenRect.size.height - appFrame.size.height));
     
-    float navBarHeight = 0.0f;
+    CGFloat navBarHeight = 0.0f;
     UINavigationController *navController = self.navigationController;
     if (navController != nil ) {
         if (!navController.navigationBar.isHidden) {
@@ -241,7 +241,7 @@
         }
     }
     
-    float tabBarHeight = 0.0f;
+    CGFloat tabBarHeight = 0.0f;
     UITabBarController *tabBarController = self.tabBarController;
     if (tabBarController != nil) {
         if (!tabBarController.tabBar.isHidden) {
@@ -250,8 +250,8 @@
     }
 	
 	// Initially assume portrait orientation.
-	float width = fullScreenRect.size.width;
-	float height = fullScreenRect.size.height;
+	CGFloat width = fullScreenRect.size.width;
+	CGFloat height = fullScreenRect.size.height;
 	
 	// Correct for orientation.
 	if (UIInterfaceOrientationIsLandscape(theOrientation)) {
@@ -277,8 +277,8 @@
 	// Layout the master, detail and divider views appropriately, adding/removing subviews as needed.
 	// First obtain relevant geometry.
 	CGSize fullSize = [self splitViewSizeForOrientation:theOrientation];
-	float width = fullSize.width;
-	float height = fullSize.height;
+	CGFloat width = fullSize.width;
+	CGFloat height = fullSize.height;
 	
 	if (NO) { // Just for debugging.
 		NSLog(@"Target orientation is %@, dimensions will be %.0f x %.0f", 
@@ -464,9 +464,9 @@
 	leadingCorners.autoresizingMask = (_vertical) ? UIViewAutoresizingFlexibleBottomMargin : UIViewAutoresizingFlexibleRightMargin;
 	trailingCorners.autoresizingMask = (_vertical) ? UIViewAutoresizingFlexibleTopMargin : UIViewAutoresizingFlexibleLeftMargin;
 	
-	float x, y, cornersWidth, cornersHeight;
+	CGFloat x, y, cornersWidth, cornersHeight;
 	CGRect leadingRect, trailingRect;
-	float radius = leadingCorners.cornerRadius;
+	CGFloat radius = leadingCorners.cornerRadius;
 	if (_vertical) { // left/right split
 		cornersWidth = (radius * 2.0f) + _splitWidth;
 		cornersHeight = radius;
@@ -857,16 +857,16 @@
 }
 
 
-- (float)splitPosition
+- (CGFloat)splitPosition
 {
 	return _splitPosition;
 }
 
 
-- (void)setSplitPosition:(float)posn
+- (void)setSplitPosition:(CGFloat)posn
 {
 	// Check to see if delegate wishes to constrain the position.
-	float newPosn = posn;
+	CGFloat newPosn = posn;
 	BOOL constrained = NO;
 	CGSize fullSize = [self splitViewSizeForOrientation:self.interfaceOrientation];
 	if (_delegate && [_delegate respondsToSelector:@selector(splitViewController:constrainSplitPosition:splitViewSize:)]) {
@@ -875,8 +875,8 @@
 		
 	} else {
 		// Apply default constraints if delegate doesn't wish to participate.
-		float minPos = MG_MIN_VIEW_WIDTH;
-		float maxPos = ((_vertical) ? fullSize.width : fullSize.height) - (MG_MIN_VIEW_WIDTH + _splitWidth);
+		CGFloat minPos = MG_MIN_VIEW_WIDTH;
+		CGFloat maxPos = ((_vertical) ? fullSize.width : fullSize.height) - (MG_MIN_VIEW_WIDTH + _splitWidth);
 		constrained = (newPosn != _splitPosition && newPosn >= minPos && newPosn <= maxPos);
 	}
 	
@@ -899,7 +899,7 @@
 }
 
 
-- (void)setSplitPosition:(float)posn animated:(BOOL)animate
+- (void)setSplitPosition:(CGFloat)posn animated:(BOOL)animate
 {
 	BOOL shouldAnimate = (animate && [self isShowingMaster]);
 	if (shouldAnimate) {
@@ -912,13 +912,13 @@
 }
 
 
-- (float)splitWidth
+- (CGFloat)splitWidth
 {
 	return _splitWidth;
 }
 
 
-- (void)setSplitWidth:(float)width
+- (void)setSplitWidth:(CGFloat)width
 {
 	if (width != _splitWidth && width >= 0) {
 		_splitWidth = width;

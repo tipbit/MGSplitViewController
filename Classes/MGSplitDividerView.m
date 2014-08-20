@@ -67,7 +67,7 @@
 		CGGradientRelease(gradient);
 		
 		// Draw borders.
-		float borderThickness = 1.0;
+		CGFloat borderThickness = 1.0;
 		[[UIColor colorWithWhite:0.7f alpha:1.0] set];
 		CGRect borderRect = bounds;
 		if (splitViewController.vertical) {
@@ -91,8 +91,8 @@
 
 - (void)drawGripThumbInRect:(CGRect)rect
 {
-	float width = 9.0;
-	float height;
+	CGFloat width = 9.0;
+	CGFloat height;
 	if (splitViewController.vertical) {
 		height = 30.0;
 	} else {
@@ -102,8 +102,8 @@
 	
 	// Draw grip in centred in rect.
 	CGRect gripRect = CGRectMake(0, 0, width, height);
-	gripRect.origin.x = (float)((rect.size.width - gripRect.size.width) / 2.0);
-	gripRect.origin.y = (float)((rect.size.height - gripRect.size.height) / 2.0);
+	gripRect.origin.x = (rect.size.width - gripRect.size.width) / 2.0f;
+	gripRect.origin.y = (rect.size.height - gripRect.size.height) / 2.0f;
 	
 	float stripThickness = 1.0;
 	UIColor *stripColor = [UIColor colorWithWhite:0.35f alpha:1.0];
@@ -186,7 +186,7 @@
 	if (touch) {
 		CGPoint lastPt = [touch previousLocationInView:self];
 		CGPoint pt = [touch locationInView:self];
-		float offset = (splitViewController.vertical) ? pt.x - lastPt.x : pt.y - lastPt.y;
+		CGFloat offset = (splitViewController.vertical) ? pt.x - lastPt.x : pt.y - lastPt.y;
 		if (!splitViewController.masterBeforeDetail) {
 			offset = -offset;
 		}

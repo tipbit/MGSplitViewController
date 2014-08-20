@@ -69,8 +69,8 @@ float rad2Deg(double radians)
 			UIRectFill(self.bounds);
 		}
 		
-		float maxX = CGRectGetMaxX(self.bounds);
-		float maxY = CGRectGetMaxY(self.bounds);
+		CGFloat maxX = CGRectGetMaxX(self.bounds);
+		CGFloat maxY = CGRectGetMaxY(self.bounds);
 		UIBezierPath *path = [UIBezierPath bezierPath];
 		CGPoint pt = CGPointZero;
 		switch (cornersPosition) {
