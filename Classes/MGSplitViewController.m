@@ -1103,11 +1103,13 @@
             cornerRadius = MG_DEFAULT_CORNER_RADIUS;
             _splitWidth = MG_DEFAULT_SPLIT_WIDTH;
             self.allowsDraggingDivider = NO;
+            break;
 
         case MGSplitViewDividerStylePaneSplitter:
             cornerRadius = MG_PANESPLITTER_CORNER_RADIUS;
             _splitWidth = MG_PANESPLITTER_SPLIT_WIDTH;
             self.allowsDraggingDivider = YES;
+            break;
 
         default:
             assert(false);
