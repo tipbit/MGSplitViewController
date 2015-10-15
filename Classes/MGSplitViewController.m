@@ -581,7 +581,7 @@
 		
 		// Create and configure _barButtonItem.
 		_barButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Master", nil) 
-														  style:UIBarButtonItemStyleBordered 
+														  style:UIBarButtonItemStylePlain
 														 target:self 
 														 action:@selector(showMasterPopover:)];
 		
